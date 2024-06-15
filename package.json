@@ -1,0 +1,17 @@
+{
+  "name": "neuraflow",
+  "version": "1.0.0",
+  "description": "A library to easily create neural networks in NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test:xor": "node ./examples/xor.js"
+  },
+  "keywords": [
+    "Neural",
+    "Network",
+    "AI",
+    "NodeJS"
+  ],
+  "author": "DIDELOT Tim",
+  "license": "MIT"
+}
