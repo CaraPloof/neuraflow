@@ -1,5 +1,6 @@
 const { shuffle } = require('./common');
 const { sigmoid, dSigmoid } = require('./math');
+const fs = require('fs');
 
 class NeuralNetwork {
     constructor(inputNodes, hiddenNodes, outputNodes, learningRate, epochs) {
@@ -98,6 +99,24 @@ class NeuralNetwork {
     predict(input) {
         this.forward(input);
         return this.outputLayer;
+    }
+
+    export(path) {
+        const data = {
+            hiddenLayerBias: this.hiddenLayerBias,
+            outputLayerBias: this.outputLayerBias,
+            hiddenWeights: this.hiddenWeights,
+            outputWeights: this.outputWeights
+        };
+        fs.writeFileSync(path, JSON.stringify(data));
+    }
+
+    import(path) {
+        const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+        this.hiddenLayerBias = data.hiddenLayerBias;
+        this.outputLayerBias = data.outputLayerBias;
+        this.hiddenWeights = data.hiddenWeights;
+        this.outputWeights = data.outputWeights;
     }
 }
 

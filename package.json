@@ -4,7 +4,8 @@
   "description": "A library to easily create neural networks in NodeJS",
   "main": "index.js",
   "scripts": {
-    "test:xor": "node ./examples/xor.js"
+    "test:xor": "node ./examples/xor.js",
+    "test:xorPretrained": "node ./examples/xorPretrained.js"
   },
   "keywords": [
     "Neural",

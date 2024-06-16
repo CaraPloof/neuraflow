@@ -25,9 +25,10 @@ The `NeuralNetwork` class allows you to create and train a neural network with c
 - Methods:
     - `train(trainingInputs, trainingOutputs)`: Train the neural network using provided training data.
     - `predict(input)`: Predict outputs for a given input after training.
+    - `export(path)`: Save the network's weights and biases to a specified file path.
+    - `import(path)`: Load the network's weights and biases from a specified file path.
 
 ## Example
-
 See the provided example in examples/xor.js to understand how to use NeuraFlow to solve the XOR problem.
 
 ## Credits
