@@ -1,6 +1,7 @@
+const fs = require('fs');
+const { SingleBar } = require('cli-progress');
 const { shuffle } = require('./common');
 const { sigmoid, dSigmoid } = require('./math');
-const fs = require('fs');
 
 class NeuralNetwork {
     constructor(inputNodes, hiddenNodes, outputNodes, learningRate, epochs) {
@@ -31,6 +32,16 @@ class NeuralNetwork {
     train(trainingInputs, trainingOutputs) {
         const trainingSetOrder = Array.from(Array(trainingInputs.length).keys());
 
+        let processedEpochs = 0;
+        const progressBar = new SingleBar({
+            format: 'Training Progress [{bar}] {percentage}% | ETA: {eta}s | {value}/{total} Epochs',
+            barCompleteChar: '\u2588',
+            barIncompleteChar: '\u2591',
+            hideCursor: true
+        });
+
+        progressBar.start(this.epochsNum, 0);
+
         for (let e = 0; e < this.epochsNum; ++e) {
             shuffle(trainingSetOrder, trainingInputs.length);
             for (let x = 0; x < trainingInputs.length; ++x) {
@@ -38,7 +49,12 @@ class NeuralNetwork {
                 this.forward(trainingInputs[i]);
                 this.backward(trainingInputs[i], trainingOutputs[i]);
             }
+
+            processedEpochs++;
+            progressBar.update(processedEpochs, { total: this.epochsNum });
         }
+
+        progressBar.stop();
     }
 
     forward(input) {

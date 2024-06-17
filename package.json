@@ -14,5 +14,8 @@
     "NodeJS"
   ],
   "author": "DIDELOT Tim",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cli-progress": "^3.12.0"
+  }
 }
